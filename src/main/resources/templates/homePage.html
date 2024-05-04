@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楠木花市</title>
+    <link rel="stylesheet" th:href="@{/css/homePage.css}">
+    <style>
+
+    </style>
+</head>
+
+<body>
+<form th:action="@{/Flower/queryFlowers}">
+    <!-- 1.头部区域start -->
+    <div class="header w">
+        <!-- logo部分 -->
+        <div class="logo"><img th:src="@{/img/homePage/logo.png}" alt   =""></div>
+        <!-- 导航栏部分 -->
+        <!-- 导航栏开发中 不会直接写 a 链接 而是用 li 包含链接（ li + a ）的做法 -->
+        <div class="nav">
+            <ul>
+                <li><a th:href="@{/Flower/home}">首页</a></li>
+                <li><a th:href="@{/Cart/carts}">购物车</a></li>
+                <li><a th:href="@{/Order/lists}">我的订单</a></li>
+            </ul>
+        </div>
+        <!-- 搜索模块 -->
+        <div class="search">
+            <input type="text" placeholder="请输入关键字" outline="none" name="fname">
+            <button>搜索</button>
+        </div>
+        <!-- 用户模块 -->
+        <div class="user" th:if="${session.loginUser!=null}">
+            <a th:href="@{/user/lists}">
+                <img th:src="@{/}+${session.loginUser.uphotos}" width="50" height="30">
+                <span th:text="${session.loginUser.uname}"></span>
+            </a>
+        </div>
+
+      <!--  注销链接 -->
+        <div class="dl">
+            <div th:if="${session.loginUser!=null}">
+            <a th:href="@{/user/logout}">注销</a>
+            </div>
+         <!-- 注册注册 -->
+            <div th:if="${session.loginUser==null}">
+            <a th:href="@{/register}">注册</a>
+            </div>
+        <!-- 登录链接 -->
+            <div th:if="${session.loginUser==null}">
+            <a th:href="@{/login}">登录</a>
+            </div>
+        </div>
+    </div>
+    <!-- 头部区域end-->
+
+    <!-- 2.banner部分start -->
+    <div class="banner">
+        <div class="w">
+            <!-- 左侧导航 -->
+            <div class="subnav">
+                <ul th:each="list:${lists}">
+                    <!--只能容纳九个分类，如果多余九个就在下面显示-->
+                    <li><a th:href="@{/Flower/herb(sid=${list.sid})}" th:text="${list.sname}"><span> &gt; </span></a></li>
+                </ul>
+            </div>
+            <!-- end -->
+        </div>
+    </div>
+    <!-- banner部分end -->
+
+    <!-- 精品推荐end -->
+    <div class="goods w">
+         <h3>⇩  所有花卉  ⇩</h3>
+         <ul class="clear"> </ul>
+         <a href=" " class="mod">★★★★★</a>
+    </div>
+
+    <!-- 4.box核心内容start -->
+    <div class="box w">
+        <div class="box-bd">
+            <ul class="clearfix" >
+                <!-- 草本图一 -->
+                <li th:each="flowerList,state:${flowers}">
+
+                    <a th:href="@{/Flower/con(fid=${flowerList.fid})}">
+                        <div class="img">
+
+                            <img th:src="@{/}+${flowerList.fimage}" width="50" height="190"  >
+                        </div>
+                        <br><br><br>
+                        <div class="info">
+                            <h4 th:text="${flowerList.fname}"/>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    <!-- box核心内容end -->
+
+    <!-- 5.footer部分start -->
+    <div class="footer ">
+        <div class="w">
+            <div class="copyright">
+                <img th:src="@{/img/homePage/logo.png}" alt   ="">
+                <p>@2020 经营花店本着以诚为本，服务至上的经营原则，真诚服务于消费者。<br>
+                    树立竞争意识、市场意识、讲信誉、讲品牌。<br>
+                </p>
+            </div>
+            <div class="links">
+                <dl>
+                    <dt> 新手指南</dt>
+                    <dd><a href="#">· 了解楠木花店</a> </dd>
+                    <dd><a href="#">· 注册新用户</a> </dd>
+                    <dd><a href="#">· 买家入门</a> </dd>
+                    <dd><a href="#">· 卖家入门</a> </dd>
+                </dl>
+                <dl>
+                    <dt> 交易安全</dt>
+                    <dd><a href="#">· 交易维权攻略</a> </dd>
+                    <dd><a href="#">· 买家防骗</a> </dd>
+                    <dd><a href="#">· 卖家防骗</a> </dd>
+                    <dd><a href="#">· 投诉楠木</a> </dd>
+                </dl>
+                <dl>
+                    <dt> 关于楠木</dt>
+                    <dd><a href="#">· 楠木介绍</a> </dd>
+                    <dd><a href="#">· 联系我们</a> </dd>
+                    <dd><a href="#">· 诚征英才</a> </dd>
+                    <dd><a href="#">· 知识产权</a> </dd>
+                    <dd><a th:href="@{/logMain}" target="_blank"> 后台页面</a> </dd>
+                </dl>
+            </div>
+
+        </div>
+    </div>
+    <!-- footer部分end -->
+</form>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>草本花卉</title>
+    <link rel="stylesheet" th:href="@{/css/herb.css}">
+    <link rel="stylesheet" th:href="@{/css/homePage.css}">
+</head>
+<body>
+<div class="box w">
+    <div class="header w">
+    <!-- logo部分 -->
+    <div class="logo"><img th:src="@{/img/homePage/logo.png}" alt   =""></div>
+    <!-- 导航栏部分 -->
+    <!-- 导航栏开发中 不会直接写 a 链接 而是用 li 包含链接（ li + a ）的做法 -->
+    <div class="nav">
+        <ul>
+            <li><a th:href="@{/Flower/home}">首页</a></li>
+            <li><a th:href="@{/Cart/carts}">购物车</a></li>
+            <li><a th:href="@{/Order/lists}">我的订单</a></li>
+        </ul>
+    </div>
+    <!-- 搜索模块 -->
+    <div class="search" style="width: 500px">
+
+    </div>
+    <!-- 用户模块 -->
+    <div class="user" th:if="${session.loginUser!=null}">
+        <a th:href="@{/user/lists}">
+            <img th:src="@{/}+${session.loginUser.uphotos}" width="50" height="30">
+            <span th:text="${session.loginUser.uname}"></span>
+        </a>
+    </div>
+
+    <!--  注销链接 -->
+    <div class="dl">
+        <div th:if="${session.loginUser!=null}">
+            <a th:href="@{/user/logout}">注销</a>
+        </div>
+        <!-- 注册注册 -->
+        <div th:if="${session.loginUser==null}">
+            <a th:href="@{/register}">注册</a>
+        </div>
+        <!-- 登录链接 -->
+        <div th:if="${session.loginUser==null}">
+            <a th:href="@{/login}">登录</a>
+        </div>
+    </div>
+</div>
+    <div class="box-bd" style="width: 5px">
+        <ul class="clearfix" >
+            <!-- 草本图一 -->
+            <li th:each="flowerList,state:${flowerLists}">
+
+                <a th:href="@{/herb_01}">
+                    <div class="img">
+                        <img th:src="@{/}+${flowerList.fimage}" width="50" height="220"  >
+                    </div>
+                    <br><br><br>
+
+                    <div class="info">
+                        <h4 th:text="${flowerList.fname}"/>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

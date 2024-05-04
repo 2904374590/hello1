@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flower.dao.OrderDao">
+        <select id="queryOrderByOnum" parameterType="String" resultType="Order">
+                select * from flower.t_order
+                where onumber = #{onumber}
+        </select>
+        <select id="lists" parameterType="Integer" resultType="Order">
+                select * from flower.t_order
+                where uid = #{uid}
+        </select>
+        <select id="listsList" resultType="Order">
+                select  * from flower.t_order
+        </select>
+        <select id="queryOrderByOnumber" parameterType="String" resultType="Order">
+                select * from flower.t_order
+                where onumber like CONCAT('%',#{onumber},'%')
+        </select>
+        <insert id="addOrder" parameterType="Order">
+                insert into flower.t_order
+                values (#{oid},#{uid},#{onumber},#{oremark},#{otime},#{oprice},#{oaddress},#{ophone},#{oname},#{orderName})
+        </insert>
+        <delete id="deleteByOid" parameterType="Integer">
+                delete from flower.t_order
+                where oid = #{oid}
+        </delete>
+</mapper>

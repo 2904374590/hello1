@@ -1,0 +1,232 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* 设置版心的区块 要是处于版心的模块 就带W */
+.w{
+    width: 1200px;
+    margin: auto;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.clearfix:before,.clearfix:after{
+    content:"";
+    display:table;
+}
+.clearfix:after{
+    clear:both;
+}
+.clearfix{
+    *zoom:1;
+}
+.header{
+    height: 42px;
+    /* background-color: pink; */
+    /* 注意此地方会层叠w里面的margin */
+    margin: 9px auto; 
+}
+.logo img{
+    width: 198px;
+    height: 42px;
+    /* background-color: aquamarine; */
+    float: left;
+}
+
+.nav{
+    float: left;
+    margin-left: 20px;
+}
+.nav ul li{
+    float: left;
+    margin: 0 10px;
+}
+.nav ul li a{
+    height: 42px;
+    padding: 0 10px;
+    display: block;
+    line-height: 42px;
+    font-size: 18px;
+    color: #050505;
+}
+.nav ul li a:hover{
+    border-bottom: 2px solid #00a4ff;
+    color: #00a4ff;
+}
+/* 搜索模块 */
+.search{
+    float: left;
+    width: 412px;
+    height: 42px;
+    /* background-color: skyblue; */
+    margin-left: 40px;
+}
+.search input{
+    float: left;
+    width: 250px;
+    height: 40px;
+    border: 1px solid #00a4ff;
+    border-right: 0;
+    color: #bfbfbf;
+    font-size: 14px;
+    padding-left: 15px;
+}
+.search input:focus {
+    outline:none;
+} 
+.search button{
+    float: left;
+    width: 50px;
+    height: 42px;
+    background-color: #00a4ff;
+    border: 0; 
+}
+.user{
+    float: left;
+    line-height: 42px;
+    font-size: 14px;
+    color: #666;
+}
+.user .img{
+    float: left;
+}
+.user .img img{
+    background-color: #00a4ff;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.user a p{
+    float: left;
+    color: #666;
+}
+
+.header .dl a{
+    float:right;
+    line-height: 42px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #666;
+}
+/* .header .zx a{
+    float: right;
+    line-height: 42px;
+    margin-right: 10pxpx;
+    font-size: 14px;
+    color: #666;
+} */
+.header .dl a:hover{
+    color: #00a4ff;
+    text-decoration:underline;
+}
+/* .header .zx a:hover{
+    color: #00a4ff;
+    text-decoration:underline;
+} */
+
+
+
+.gwc{
+    text-align: center;
+    height: 42px;
+    padding: 0 10px;
+    display: block;
+    line-height: 42px;
+    font-size: 24px;
+}
+
+.container{
+    width: 1050px;
+    margin: 0 auto;
+    color: #444;
+}
+.header{
+    margin: 8px;
+}
+.shop_icon, .wangwang_icon, .promotion_icons span{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: pink;
+}
+.promotion_icons span{
+    margin-right: 4px;
+}
+.items{
+    border: 1px solid #e6e1e1;
+}
+.item{
+    display: flex;
+    margin: 8px;
+}
+
+.item_img{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-color: rgb(234, 161, 161);
+    margin-left: 6px;
+    margin-right: 6px;
+
+}
+.item_name{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.sku, .price, .num_control, .item_price_total, .operation{
+    margin-left: 18px;
+}
+.num{
+    width: 18px;
+    padding: 0;
+}
+.num_control{
+    display: flex;
+    align-items: baseline;
+}
+.num_minus, .num_plus{
+    width: 18px;
+    height: 22px;
+    display: inline-block;
+    background-color: #ebe9e9;
+    border:none;
+}
+
+
+
+/* 按钮 */
+ul,li{margin:0; padding:0; }
+.counter li{float:left; list-style-type:none; width:30px; height:30px; text-align:center; line-height:30px; border:#999 thin solid; background-color:#fff}
+.counter li input{font-size:20px; width:100%; height:100%; outline:none; -webkit-appearance:none; background:none; margin:0; padding:0; border: 1px solid transparent; border-radius: 0;}
+#countnum{ border-left:hidden; border-right:hidden; color:#666}
+/* end */
+
+
+
+.checkout{
+    display: flex;
+    justify-content: space-between;
+}
+.shop{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.price_1{
+    text-decoration: line-through;
+    color:rgb(185, 182, 182);
+}
+.checkout{
+    line-height: 82px;
+}
+.checkout .checkout_buttom{
+    height: 50px;
+    width: 70px;
+    margin: auto 0;
+}

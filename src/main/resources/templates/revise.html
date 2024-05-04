@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>修改个人信息</title>
+	<link th:href="@{/css/revise.css} " rel="stylesheet">
+</head>
+
+<body class="text-center">
+<div  align="right">
+	<a th:href="@{/Flower/home}">返回首页</a>
+</div>
+	<div class="outbox">
+		<form class="form-regist" th:action="@{/user/update}" method="post" enctype="multipart/form-data">
+			<div class="imgcenter">
+				<img class="logo" th:src="@{/img/regist/logo.png}" alt="">
+			</div>
+			<table>
+				<tr>
+					<h1 class="tip">请重新输入信息</h1>
+				</tr>
+				<tr>
+
+					<td valign="middle" align="left">
+						<input type="hidden" name="uid" th:value="${session.loginUser.uid}">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<input class="text-box" type="text" id="uname"  th:value="${session.loginUser.uname}" name="uname">
+					</td>
+				</tr>
+				<tr>
+					<td><input class="text-box" type="password" id="password" placeholder="Password" th:value="${session.loginUser.upwd}" name="upwd"></td>
+				</tr>
+				<tr>
+					<td><input class="text-box" type="text"  placeholder="Realname" th:value="${session.loginUser.urealname}" name="urealname"></td>
+				</tr>
+				<tr>
+					<td><input class="text-box" type="text"  placeholder="Cell-phone number" th:value="${session.loginUser.uphone}"  name="uphone"></td>
+				</tr>
+				<tr>
+					<td><input class="text-box" type="text"  placeholder="Receiving address" th:value="${session.loginUser.uaddress}" name="uaddress"></td>
+				</tr>
+				<tr>
+					<td>
+						<input type="radio" name="usex" id="nan" value="1">
+						<label for="nan">男</label>
+						<input type="radio" name="usex" id="nv" value="0">
+						<label for="nv">女</label></td>
+				</tr>
+				<tr>
+					<td valign="middle" align="left">
+						当前头像:
+					</td>
+					<td valign="middle" align="left">
+						<img th:src="@{/}+${session.loginUser.uphotos}" width="60">
+						<input type="hidden" th:value="${session.loginUser.uphotos}" name="photo">
+					</td>
+				</tr>
+				<tr>
+					<td valign="middle" align="left">
+						选择新头像:
+					</td>
+					<td valign="middle" align="left">
+						<input type="file" name="img" />
+					</td>
+				</tr>
+
+				<tr>
+					<td><input type="submit" value="Submit" class="submit" ></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+
+</html>

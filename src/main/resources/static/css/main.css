@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color: #eceff1;
+}
+a:hover {
+    color: aquamarine;
+}
+p {
+    margin-top: 30px;
+}

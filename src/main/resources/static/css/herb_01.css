@@ -1,0 +1,228 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0
+}
+body{
+    background-color: #fff;;
+    /* height: 3000px; */
+}
+/* 设置版心的区块 要是处于版心的模块 就带W */
+.w{
+    width: 1200px;
+    margin: auto;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.clearfix:before,.clearfix:after{
+    content:"";
+    display:table;
+}
+.clearfix:after{
+    clear:both;
+}
+.clearfix{
+    *zoom:1;
+}
+.header{
+    height: 42px;
+    /* background-color: pink; */
+    /* 注意此地方会层叠w里面的margin */
+    margin: 9px auto; 
+}
+.logo img{
+    width: 198px;
+    height: 42px;
+    /* background-color: aquamarine; */
+    float: left;
+}
+
+.nav{
+    float: left;
+    margin-left: 20px;
+}
+.nav ul li{
+    float: left;
+    margin: 0 10px;
+}
+.nav ul li a{
+    height: 42px;
+    padding: 0 10px;
+    display: block;
+    line-height: 42px;
+    font-size: 18px;
+    color: #050505;
+}
+.nav ul li a:hover{
+    border-bottom: 2px solid #00a4ff;
+    color: #00a4ff;
+}
+/* 搜索模块 */
+.search{
+    float: left;
+    width: 412px;
+    height: 42px;
+    /* background-color: skyblue; */
+    margin-left: 40px;
+}
+.search input{
+    float: left;
+    width: 250px;
+    height: 40px;
+    border: 1px solid #00a4ff;
+    border-right: 0;
+    color: #bfbfbf;
+    font-size: 14px;
+    padding-left: 15px;
+}
+.search input:focus {
+    outline:none;
+} 
+.search button{
+    float: left;
+    width: 50px;
+    height: 42px;
+    background-color: #00a4ff;
+    border: 0; 
+}
+.user{
+    float: left;
+    line-height: 42px;
+    font-size: 14px;
+    color: #666;
+}
+.user .img{
+    float: left;
+}
+.user .img img{
+    background-color: #00a4ff;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.user p{
+    float: left;
+}
+
+.header .dl a{
+    float:right;
+    line-height: 42px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #666;
+}
+/* .header .zx a{
+    float: right;
+    line-height: 42px;
+    margin-right: 10pxpx;
+    font-size: 14px;
+    color: #666;
+} */
+.header .dl a:hover{
+    color: #00a4ff;
+    text-decoration:underline;
+}
+/* .header .zx a:hover{
+    color: #00a4ff;
+    text-decoration:underline;
+} */
+
+
+/* 下面的盒子 */
+.outbox .leftbox{
+    /* background-color: pink; */
+    float: left;
+    width: 560px;
+}
+.outbox .rightbox{
+    /* background-color: blue; */
+    float: left;
+    width: 600px;
+    height: 451px;
+    padding: 20px 10px 0 10px;
+}
+.title{
+    background-color: #ffe8d6;
+    padding :0 10px 20px 10px;
+}
+.title p{
+    font-weight: 700;
+    color: #3C3C3C;
+    font-size: 18px;
+}
+.title span{
+    color:#1f1f1f;
+}
+.price{
+    padding-left: 20px;
+}
+.m{
+    padding: 20px 20px 20px 17px;
+}
+.jiazhi{
+    padding: 10px 10px 10px 17px;
+    font-size: 14px;
+    color: #6c6c6c;
+    background-color: #fff9f5;
+}
+.price{
+    background-color: #fff2e8;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.price span{
+    display: inline-block;
+    font-size: 16px;
+}
+.price .money{
+    color: #ff4400;
+    font-family: verdana,arial;
+    font-size: 30px;
+    font-weight: 900;
+}
+.outbox .leftbox img{
+    width: 500px;
+    margin: 20px 80px 20px 40px;
+}
+.jiazhi span{
+    display: inline-block;
+    width: 5em;
+    margin: 5px 0;
+}
+.jiazhi p{
+    display: inline-block;
+    margin: 5px 0;
+}
+
+/* 按钮 */
+ul,li{margin:0; padding:0; }
+.counter li{float:left; list-style-type:none; width:30px; height:30px; text-align:center; line-height:30px; border:#999 thin solid; background-color:#fff}
+.counter li input{font-size:20px; width:100%; height:100%; outline:none; -webkit-appearance:none; background:none; margin:0; padding:0; border: 1px solid transparent; border-radius: 0;}
+#countnum{ border-left:hidden; border-right:hidden; color:#666}
+/* end */
+
+/* subimt */
+.submit{
+    width: 180px;
+    color: #FFF;
+    border-color: #F40;
+    background: #F40;
+    font-size: 16px;
+    line-height: 38px;
+    border-radius: 7px;
+}
+.submit:hover{
+    background-color: #f22d00;
+   
+}
+.footer{
+    background-color: #fdf9f5;
+    padding :15px ;
+}

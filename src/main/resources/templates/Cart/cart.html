@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+</head>
+
+<body>
+<form th:action="@{/Cart/con}">
+        <div class="nav">
+            <ul>
+                <li><a th:href="@{/Flower/home}">首页</a></li>
+                <li><a th:href="@{/Cart/carts}">购物车</a></li>
+                <li><a th:href="@{/Order/lists}">我的订单</a></li>
+            </ul>
+        </div>
+    <!-- 头部区域end-->
+    <div class="gwc">购物车</div>
+    <div class="container">
+        <div class="shop">
+            <div class="header">
+                <!-- <input type="checkbox" class="shop_checkbox"> -->
+                <span class="shop_icon"></span>
+                <span class="shop_name">店铺：麦象旗舰店</span>
+                <span class="wangwang_icon"></span>
+            </div>
+        </div>
+
+
+        <div class="items" th:each="cartList:${cartList}" >
+
+            <div class="item">
+                <div>
+                    <input type="checkbox"  class="item_checkbox checkboxs" name="coffee" th:value="${cartList.cid}"><br />
+                </div>
+                <div>
+                    <span class="item_img"> <img th:src="@{/}+${cartList.fimage}" width="100px" height="100px"></span>
+                </div>
+                <div class="item_name">
+                    <div th:hi="${cartList.subject}"></div>
+                    <div class="promotion_icons">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="sku">
+                    描述:<div ></div>
+                </div>
+
+                <div class="num_control">
+                    <a class="num_minus">-</a>
+                    <input class="num" type="text" name="camount" th:value="${cartList.camount}">
+                    <a class="num_plus">+</a>
+                </div>
+                <div class="item_price_total">
+                    <span>￥</span>
+                    <span class="realPrice" th:text="${cartList.fprice}"></span>元/枝
+                </div>
+                <div class="operation">
+                    <div> <a href="javascript:;" th:onclick="'deleteEmployee('+${cartList.cid}+')'">删除</a></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function deleteEmployee(cid){
+                console.log(cid);
+                if(window.confirm('确定要删除这条记录吗?')){
+                    location.href='[[@{/Cart/deleteByCid?cid=}]]'+cid;
+                }
+            }
+        </script>
+        <div class="checkout">
+
+            <!-- <div><input type="checkbox" class="j_cbAll checkboxs">全选</div> -->
+            <div>已选商品<span class="check_num">0</span>件</div>
+            <div>合计(包邮) <span class="total_price">0.00</span>元</div>
+            <div><input class="price_hidden" name="money" type="hidden"/></div>
+            <input type="submit" class="checkout_buttom" onclick="createOrder()" value="提交"><br /><br />
+            <input type="hidden"  name="num" class="array_num" value="0">
+        </div>
+
+    </div>
+
+
+        <script>
+            //数量的加减
+            var num_minus = document.querySelectorAll('.num_minus');//减 按钮
+            var num_plus = document.querySelectorAll('.num_plus');//加
+            var num = document.querySelectorAll('.num')//文本框数字
+            var check_num = document.querySelector('.check_num');//总数量
+            var total_price = document.querySelector('.total_price');//总价
+            var realPrice = document.querySelectorAll('.realPrice')//每一件商品价格
+            // console.log(realPrice);
+            var sum_num_flower; //花的总数量
+            var sum_price_flower;//花的总价钱
+            var price_hidden = document.querySelector('.price_hidden');
+            var array_num = document.querySelector('.array_num');   // 存放每种花的数量 返回给input  //2
+            var array ; //数组 最后给array_num赋值       //3
+            var array_subscript_num; //每选择一个商品 这个加一 加一后变为0  用来存放num 这是下标  //4
+            // console.log(num);
+
+
+            // for (var i = 0; i < num_minus.length; i++) {
+            //     num_minus[i].onclick = function () {
+            //         sum_num_flower = 0;
+            //         for (var i = 0; i < item_checkbox.length; i++) {
+            //             if (item_checkbox[i].checked === true) {
+            //                 sum_num_flower = sum_num_flower + Number(num[i].value);
+            //             }
+            //         }
+            //         console.log('完成加法' + sum_num_flower);
+            //     }
+            // }
+
+
+            //减
+            for (var i = 0; i < num_minus.length; i++) {
+                num_minus[i].index = i;
+                num_minus[i].onclick = function () {
+                    num[this.index].value = Number(num[this.index].value) - 1;
+                    if (num[this.index].value < 0) {
+                        num[this.index].value = 0;
+                    }
+                    //下面是计算的
+                    sum_num_flower = 0;
+                    sum_price_flower = 0;
+                    array = [];   //存放数量的数组清0 //5
+                    array_subscript_num = -1;  // 最开始为-1 加一后为0  //6
+                    for (var i = 0; i < item_checkbox.length; i++) {
+                        if (item_checkbox[i].checked === true) {
+                            array_subscript_num++; //下标加一    //7
+                            sum_num_flower = sum_num_flower + Number(num[i].value);
+                            array[array_subscript_num] = Number(num[i].value);  //8
+                            // console.log(parseFloat (realPrice[i].innerHTML));
+                            sum_price_flower = sum_price_flower + Number(num[i].value) * Number(realPrice[i].innerHTML);
+                        }
+                    }
+                    console.log('完成加法' + sum_num_flower);
+                    check_num.innerHTML = sum_num_flower;
+                    total_price.innerHTML = sum_price_flower;
+                    price_hidden.value = sum_price_flower;//3
+                    array_num.value = array;                     // 将获取好的数组数量赋值给input  //9
+                    console.log(array);
+                    console.log(array_num.value);
+                }
+            }
+            //加
+            for (var i = 0; i < num_plus.length; i++) {
+                num_plus[i].index = i;
+                num_plus[i].onclick = function () {
+                    num[this.index].value = Number(num[this.index].value) + 1;
+                    if (num[this.index].value < 0) {
+                        num[this.index].value = 0;
+                    }
+                    //
+                    sum_num_flower = 0;
+                    sum_price_flower = 0;
+                    array = [];   //存放数量的数组清0   //10
+                    array_subscript_num = -1;  // 最开始为-1 加一后为0  //11
+                    for (var i = 0; i < item_checkbox.length; i++) {
+                        if (item_checkbox[i].checked === true) {
+                            array_subscript_num++; //下标加一  //12
+                            array[array_subscript_num] = Number(num[i].value);  //13
+                            sum_num_flower = sum_num_flower + Number(num[i].value);
+                            sum_price_flower = sum_price_flower + Number(num[i].value) * Number(realPrice[i].innerHTML);
+                        }
+                    }
+                    console.log('完成加法' + sum_num_flower);
+                    check_num.innerHTML = sum_num_flower;
+                    total_price.innerHTML = sum_price_flower;
+                    array_num.value = array;                     // 将获取好的数组数量赋值给input  //14
+                    price_hidden.value = sum_price_flower;//4
+                }
+            }
+
+
+            // 计算花的总数
+
+            var item_checkbox = document.querySelectorAll('.item_checkbox');
+            for (var i = 0; i < item_checkbox.length; i++) {
+                item_checkbox[i].onclick = function () {
+                    sum_num_flower = 0;
+                    sum_price_flower = 0;
+                    array = [];   //存放数量的数组清0   //15
+                    array_subscript_num = -1;  // 最开始为-1 加一后为0  //16
+                    for (var i = 0; i < item_checkbox.length; i++) {
+                        if (item_checkbox[i].checked === true) {
+                            array_subscript_num++; //下标加一    //17
+                            array[array_subscript_num] = Number(num[i].value); //18
+                            sum_num_flower = sum_num_flower + Number(num[i].value);
+                            sum_price_flower = sum_price_flower + Number(num[i].value) * Number(realPrice[i].innerHTML);
+                        }
+                    }
+                    console.log('完成加法' + sum_num_flower);
+                    check_num.innerHTML = sum_num_flower;
+                    total_price.innerHTML = sum_price_flower;
+                    array_num.value = array;                     // 将获取好的数组数量赋值给input   //19
+                    price_hidden.value = sum_price_flower;//4
+                }
+
+            }
+        </script>
+</form>
+</body>
+
+</html>

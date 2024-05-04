@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鲜花信息</title>
+    <link rel="stylesheet" th:href="@{/css/herb_01.css}">
+
+    <script>
+        function adder() {
+            var count = document.getElementById("countnum").innerHTML;
+            count = parseInt(count) + 1;
+            
+            document.getElementById("countnum").innerHTML = count;
+            document.getElementById("ipt").value = count*[[${flowerByFid.fprice}]];
+            document.getElementById("ip").value = count;
+
+        }
+        function minuser() {
+            var count = document.getElementById("countnum").innerHTML;
+            if (count <= 0) {
+                count = 0;
+            } else {
+                count = parseInt(count) - 1;
+            }
+            document.getElementById("countnum").innerHTML = count;
+            document.getElementById("ipt").value = count*[[${flowerByFid.fprice}]];
+            document.getElementById("ip").value = count;
+        }
+    </script>
+</head>
+
+<body>
+    <form th:action="@{/Order/Con}" >
+        <!-- 1.头部区域start -->
+        <div class="header w">
+            <!-- 导航栏部分 -->
+            <!-- 导航栏开发中 不会直接写 a 链接 而是用 li 包含链接（ li + a ）的做法 -->
+            <div class="nav">
+                <ul>
+                    <li><a th:href="@{/Flower/home}">首页</a></li>
+                    <li><a th:href="@{/Cart/carts}">购物车</a></li>
+                    <li><a th:href="@{/Order/lists}">我的订单</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- 头部区域end-->
+
+        <!-- 唐松草购物界面 -->
+        <div class="outbox">
+            <div class="leftbox">
+                <img th:src="@{/}+${flowerByFid.fimage}" alt="">
+            </div>
+
+            <div class="rightbox">
+                <!-- 商品标题 -->
+                <div class="title">
+                    <p class="m" th:text="${flowerByFid.fname}"/>
+                   <!-- [<pr class="m" th:text="${flowerByFid.sname}"></pr>新品上市]-->
+                    [<pr th:text="${flowerByFid.sname}" />新品上市]
+                    <input type="hidden" th:value="${flowerByFid.fname}" name="subject">
+                </div>
+
+                <!-- 售价 -->
+                <div class="price">
+                    <span class="m">售价 :</span>
+                    <span class="m money" th:text="${flowerByFid.fprice}+'元/枝'"></span>
+                </div>
+                <div class="jiazhi">
+                    <span class="ml">鲜花描述：</span>
+                    <p th:text="${flowerByFid.fdescribe}"></p><br>
+                    <!--<span class="ml">观赏：</span>
+                    <p>株形伞状，姿态优美；花萼线形，色泽玉白或紫红的花丝，气质高雅</p><br>-->
+                    <span class="">配送说明：</span>
+                    <p>全国</p>
+                </div>
+
+
+                <div class="footer">
+                <!-- 数量 -->
+                <ul class="counter">
+                    <li id="minus">
+                        <input type="button" onclick="minuser()" value="-" />
+                    </li>
+                    <li id="countnum">0</li>
+                    <li id="plus"><input type="button" onclick="adder()" value="+" /></li>
+                    <input  type="hidden" name="camount" th:value="0" id="ip">
+                    <input  type="hidden" name="money" th:value="0" id="ipt">
+                    <input  type="hidden" name="fid" th:value="${flowerByFid.fid}">
+                    <input  type="hidden" name="uid" th:value="${session.loginUser.uid}">
+                    <input  type="hidden" name="fprice" th:value="${flowerByFid.fprice}">
+                    <input  type="hidden" name="fdescribe" th:value="${flowerByFid.fdescribe}">
+                    <input  type="hidden" name="fimage" th:value="${flowerByFid.fimage}">
+
+                    <script>
+                        var count ="0";
+                        var t1 = document.getElementById("ipt");
+                        t1 = count;
+                    </script>
+                </ul>
+                <!-- end -->
+                    <br>
+                    <br>
+
+                    <button type="submit" class="submit" name="action" value="Cart" th:formaction="@{/Cart/addCart}">加入购物车</button>
+                    <button type="submit" class="submit" name="action" value="buy">购买</button>
+                <br><br>
+
+            </div>
+            </div>
+
+        </div>
+    </form>
+<!--<form th:action="@{/Cart/test3}">
+    <input  type="text" name="t" id="ip">
+    <script>
+        var count ="10";
+        var t1 = document.getElementById("ip");
+        t1 = count;
+    </script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <input type="submit" class="submit" value="购买">
+</form>-->
+
+</body>
+
+</html>

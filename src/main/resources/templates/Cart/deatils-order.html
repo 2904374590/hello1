@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单详情</title>
+    <link rel="stylesheet" th:href="@{/css/details-order.css}">
+
+</head>
+
+<body>
+
+        <div class="nav">
+            <ul>
+                <li><a th:href="@{/Flower/home}">首页</a></li>
+                <li><a th:href="@{/Cart/carts}">购物车</a></li>
+                <li><a th:href="@{/Order/lists}">我的订单</a></li>
+            </ul>
+         </div>
+    <!-- 头部区域end-->
+
+    <div class="gwc">订单详情</div>
+
+    <!-- main -->
+    <table class="tableOrder" cellspacing="0">
+
+        <tr class="space"></tr>
+
+        <tr class="title">
+            <th></th>
+            <th>鲜花图片</th>
+            <th>鲜花名称</th>
+            <th>订单状态</th>
+            <th>单价/元</th>
+            <th>数量/个</th>
+            <th>总价</th>
+            <th>操作</th>
+        </tr>
+
+        <tr class="space"></tr>
+
+        <tr class="thing" th:each="pays,state:${pays}">
+            <td></td>
+            <td class="img">
+                <img th:src="@{/}+${pays.image}" width="100px" height="100px">
+            </td>
+
+            <td th:text="${pays.subject}" ></td>
+            <td th:text="${pays.ostatus}"></td>
+            <td th:text="${pays.price}"></td>
+            <td th:text="${pays.amount}"></td>
+            <td th:text="${pays.money}"></td>
+            <td >
+                <div th:if="${pays.ostatus}=='已发货'">
+                    <a th:href="@{/Pay/updatePays(pid=${pays.pid},oid=${pays.oid},name='退货')}"  >退货</a><br>
+                    <a th:href="@{/Pay/updatePays(pid=${pays.pid},oid=${pays.oid},name='确认收货')}">确认收货</a>
+                </div>
+                <div th:if="${pays.ostatus}=='退货中'">
+
+                </div>
+                <div th:if="${pays.ostatus}=='未发货'">
+                    <a th:href="@{/Pay/updatePays(pid=${pays.pid},oid=${pays.oid},name='退货')}"  >退货</a><br>
+                </div>
+
+            </td>
+        </tr>
+
+
+    </table>
+
+</body>
+
+</html> 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 20px;
+        }
+        input{
+            width: 500px;
+            height: 60px;
+        }
+        .addflower{
+            width: 100px;
+            height: 45px;
+        }
+    </style>
+</head>
+<body>
+<h2>添加鲜花</h2>
+
+    <form  th:action="@{/Flower/addFlower}" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td><input type="text" placeholder="鲜花名称" name="fname"></td>
+            </tr>
+            <tr>
+                <td><input type="hidden"  th:value="${session.Sid}"  readonly="readonly" name="sid"></td>
+            </tr>
+            <tr>
+                <td><input type="hidden"  th:value="${session.Sname}"  readonly="readonly" name="sname"></td>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder="鲜花价格" name="fprice"></td>
+            </tr>
+            <tr>
+                <td><input type="text"   placeholder="鲜花描述" name="fdescribe"></td>
+            </tr>
+            <tr>
+
+                <td >
+                    头像: <input class="addflower" type="file"  name="img" />
+                </td>
+            </tr>
+            <tr>
+                <td><input  type="submit" value="添加" class="submit addflower"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

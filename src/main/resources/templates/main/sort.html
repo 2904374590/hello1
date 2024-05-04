@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a{
+            text-decoration: none;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        tr td{
+            border: 1px black solid;
+
+        }
+        .long{
+            height: 50px;
+            width: 800px;
+        }
+        button{
+            width: 60px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: rgb(233, 164, 129);
+
+        }
+        button a{
+            color: white;
+        }
+        .addflower{
+            font-size: 20px;
+        }
+        input{
+            width: 600px;
+            height: 45px;
+
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/Flower/flowerList}">
+    <table class="table">
+        <h1>鲜花信息管理</h1>
+        <div class="search">
+            <input type="hidden" th:value="${session.Sid}" name="sid">
+            <input type="text" placeholder="请输入鲜花名称:" outline="none" name="fname">
+            <button>搜索</button>
+        </div>
+        <hr>
+        <a class="addflower" th:href="@{/addFlower}">添加鲜花</a>
+        <hr>
+        <tr class="table_header">
+            <td>
+                鲜花图片
+            </td>
+            <td>
+                鲜花名称
+            </td>
+            <td>
+                鲜花分类
+            </td>
+            <td>
+                价格
+            </td>
+            <td class="long">
+                鲜花描述
+            </td>
+            <td>
+                操作
+            </td>
+        </tr>
+        <br>
+
+        <tr th:each="flowers,state:${flowers}">
+            <td>
+                <img th:src="@{/}+${flowers.fimage}" width="60">
+            </td>
+            <td>
+                <span th:text="${flowers.fname}"></span>
+            </td>
+            <td>
+                <span th:text="${flowers.sname}"></span>
+            </td>
+            <td>
+                <span th:text="${flowers.fprice}"></span>
+            </td>
+            <td>
+                <span th:text="${flowers.fdescribe}" class="long"></span>
+            </td>
+            <td>
+                <button><a href="javascript:;" th:onclick="'deleteEmployee('+${flowers.fid}+')'">删除</a></button>
+                <!--<a href="javascript:;" th:onclick="'updateEmployee('+${sort.sid}+')'">更新</a>-->
+                <button><a th:href="@{'/Flower/upFlower?fid='+${flowers.fid}}">更新</a></button>
+            </td>
+
+        </tr>
+        <script>
+            function deleteEmployee(fid){
+                console.log(fid);
+                if(window.confirm('确定要删除这条记录吗?')){
+                    location.href='[[@{/Flower/deleteByFid?fid=}]]'+fid;
+                }
+            }
+        </script>
+    </table>
+</form>
+</body>
+</html>

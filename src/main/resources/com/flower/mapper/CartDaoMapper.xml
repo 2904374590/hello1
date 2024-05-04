@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flower.dao.CartDao">
+    <select id="findCartBySubject" parameterType="map" resultType="Cart">
+        select * from flower.t_cart
+        where subject = #{subject} and uid = #{uid}
+    </select>
+    <select id="findCartByUid" parameterType="Integer" resultType="Cart">
+        select * from flower.t_cart
+        where uid = #{uid}
+    </select>
+    <select id="findCartByCid" parameterType="Integer" resultType="Cart">
+        select * from flower.t_cart
+        where cid = #{cid}
+    </select>
+    <select id="queryCarts" resultType="Cart">
+        select * from flower.t_cart
+        order by cid desc
+    </select>
+    <delete id="deleteByCid" parameterType="Integer">
+        delete from flower.t_cart
+        where cid = #{cid}
+    </delete>
+    <insert id="addCart" parameterType="Cart">
+        insert into flower.t_cart
+        values (#{cid},#{uid},#{fid},#{money},#{camount},#{subject},#{fimage},#{fdescribe},#{fprice});
+    </insert>
+    <update id="updateCartAmount" parameterType="map">
+        update flower.t_cart
+        set camount = #{camount}
+        where subject = #{subject}
+    </update>
+    <update id="saveCart" parameterType="map">
+        update flower.t_cart
+        set camount = #{camount},money = #{money}
+        where cid = #{cid}
+    </update>
+</mapper>

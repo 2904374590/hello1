@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>登录</title>
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<div class="outbox">
+    <form class="form-regist" th:action="@{/user/login}">
+        <div class="imgcenter">
+            <img class="logo" th:src="@{/img/login/logo.png}" alt="">
+        </div>
+        <table>
+            <tr>
+                <h1 class="tip">Please login</h1>
+            </tr>
+            <tr>
+                <p th:text="${msg}" style="color: red" align="middle"></p>
+                <td><input class="text-box" type="text" id="user" placeholder="Username" name="uname"></td>
+            </tr>
+            <tr>
+                <td><input class="text-box" type="password" id="password" placeholder="Password" name="upwd"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Sign in" class="submit"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+
+</html>

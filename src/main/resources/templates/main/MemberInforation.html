@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body{
+            text-align: center;
+            font-size: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        tr{
+            width: 200px;
+        }
+        tr td{
+            border-bottom: 1px solid black;
+        }
+        input{
+            width: 300px;
+            height: 45px;
+        }
+        button{
+            width:60px ;
+            height: 45px;
+        }
+        table{
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>会员信息管理</h1>
+    <form th:action="@{/user/unameList}">
+        <table class="table" cellspacing="0">
+            <div class="search">
+                <input type="text" placeholder="请输入用户名" outline="none" name="uname">
+                <button>搜索</button>
+            </div>
+            <br><br><br>
+            <tr class="table_header">
+
+                <td>
+                    头像
+                 </td>
+                <td>
+                    用户名
+                </td>
+                <td>
+                    真实姓名
+                </td>
+                <td>
+                    密码
+                </td>
+                <td>
+                    性别
+                </td>
+                <td>
+                    电话
+                </td>
+                <td>
+                    地址
+                </td>
+                <td>
+                    操作
+                </td>
+
+            </tr>
+            <hr>
+            <tr th:each="user,state:${userList}" >
+                <td>
+                    <img th:src="@{/}+${user.uphotos}" width="60">
+                </td>
+                <td>
+                    <span th:text="${user.uname}"></span>
+                </td>
+                <td>
+                    <span th:text="${user.urealname}"></span>
+                </td>
+                <td>
+                    <span th:text="${user.upwd}"></span>
+                </td>
+                <td>
+                    <span th:text="${user.usex==true?'男':'女'}"></span>
+                </td>
+                <td>
+                    <span th:text="${user.uphone}"></span>
+                </td>
+                <td>
+                    <span th:text="${user.uaddress}"></span>
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="javascript:;" th:onclick="'deleteEmployee('+${user.uid}+')'">删除</a>
+                </td>
+            </tr>
+
+            <script>
+                function deleteEmployee(uid){
+                    console.log(uid);
+                    if(window.confirm('确定要删除这条记录吗?')){
+                        location.href='[[@{/user/delete?uid=}]]'+uid;
+                    }
+                }
+            </script>
+        </table>
+    </form>
+</body>
+</html>

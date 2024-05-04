@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>注册</title>
+	<link th:href="@{/css/Regist.css}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+	<div class="outbox">
+		<form class="form-regist" th:action="@{/user/register}" method="post" enctype="multipart/form-data">
+			<div class="imgcenter">
+				<img class="logo" th:src="@{/img/regist/logo.png}" alt="">
+			</div>
+			<table>
+				<br>
+				<tr>
+					<h1 class="tip">Please sign in</h1>
+				</tr>
+				<tr>
+					<td><input class="text-box" type="text" id="user" placeholder="Username" name="uname"></td>
+				</tr>
+				<tr>
+					<td><input class="text-box" type="password" id="password" placeholder="Password" name="upwd"></td>
+				</tr>
+				<tr>
+					<td><input class="text-box" type="text" placeholder="Realname" name="urealname"></td>
+				</tr>
+				<tr>
+					<td><input class="text-box" type="text" placeholder="Cell-phone number" name="uphone"></td>
+				</tr>
+				<tr>
+					<td><input class="text-box" type="text" placeholder="Receiving address" name="uaddress"></td>
+				</tr>
+				<tr>
+					<td>
+						<input type="radio" name="usex" id="nan" value="1">
+						<label for="nan">男</label>
+						<input type="radio" name="usex" id="nv" value="0">
+						<label for="nv">女</label></td>
+				</tr>
+				<tr>
+
+					<td valign="middle" align="left">
+						头像:&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" name="img" />
+					</td>
+				</tr>
+				<tr>
+					<td valign="middle" align="right">
+						<!--onclick是数据javascript，所以要进行转换-->
+						<img id="num" th:src="@{/user/generateImageCode}" alt="验证码" />
+						<a href="javascript:;" onclick="changeImageCode()">换一张</a>
+						<script>
+							function changeImageCode(){
+								document.getElementById('num').src = '[[@{/user/generateImageCode}]]?'+(new Date()).getTime()
+							}
+						</script>
+						<input type="text" class="inputgri text-box" name="code" placeholder="验证码" />
+					</td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Sign in" class="submit" ></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+
+</html>

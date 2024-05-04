@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body{
+            font-size: 18px;
+            text-align: center;
+        }
+        body a{
+            text-decoration: none;
+            color: #6c6c6c;
+            font-size: 18px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+        .addlei{
+            margin: 45px 0;
+            font-size: 20px;
+            color: #1f1f1f;
+            weight: 600;
+
+        }
+        .search input{
+            width: 200px;
+            height: 45px;
+        }
+        table {
+            width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .button{
+            width:60px ;
+            height: 45px;
+        }
+        td{
+            height: 40px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<form th:action="@{/Flower/snameList}">
+    <table border="1" cellpadding="0">
+        <!--        题目-->
+        <h1>鲜花类别管理</h1>
+        <!--        第一行-->
+        <tr>
+
+            <div class="search">
+                <input type="text" placeholder="请输入分类名称:" outline="none" name="sname">
+                <button class="button">搜索</button>
+            </div>
+
+        </tr>
+
+        <!--        第二行-->
+        <tr>
+            </td>
+            <div class="addlei">
+                <a th:href="@{/addSort}">添加类别</a>
+            </div>
+            </td>
+        </tr>
+
+        <!--        第三行-->
+        <tr class="border">
+            <td>鲜花类别</td>
+            <td>操作</td>
+        </tr>
+
+        <!--        第四行-->
+        <tr class="border" th:each="sort,state:${sortList}">
+            <td>
+                <!--点击这个超链接，跳转到/Flower/detail?sid=1
+                    这时候可以将该分类的所有鲜花都显示出来，所以要加一个根据sid查询鲜花的
+                    所有信息。然后将鲜花的信息存入model中，显示给前台。
+                    最后重定向到/main/sort下的界面，该界面显示鲜花的所有信息。
+                    所以，想要实现这个功能，就要实现添加鲜花的功能。
+                    先实现添加鲜花的功能！！-->
+                <!--<a th:text="${sort.sid}"></a>-->
+                <a th:href="@{'/Flower/detail?sid=' + ${sort.sid}}" th:text="${sort.sname}"></a>
+            </td>
+            <td>
+                <a href="javascript:;" th:onclick="'deleteEmployee('+${sort.sid}+')'">删除</a>
+                <a th:href="@{'/Flower/up?sid='+${sort.sid}}">更新</a>
+            </td>
+
+        </tr>
+
+        <script>
+            function deleteEmployee(sid) {
+                console.log(sid);
+                if (window.confirm('确定要删除这条记录吗?')) {
+                    location.href = '[[@{/Flower/deleteBySid?sid=}]]' + sid;
+                }
+            }
+        </script>
+    </table>
+</form>
+</body>
+</html>

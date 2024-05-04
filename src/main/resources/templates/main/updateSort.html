@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 20px;
+            text-align: center;
+        }
+        .submit{
+            width: 60px;
+            height: 45px;
+        }
+        input{
+            width: 500px;
+            height: 40px;
+        }
+    </style>
+
+</head>
+<body>
+<h2>更改分类的名称</h2>
+<form th:action="@{/Flower/updateSname}">
+    <table>
+        <tr>
+            <td><input type="hidden"   name="sid" th:value="${sort.sid}"></td>
+        </tr>
+        <tr>
+            <td><input type="hidden"  th:value="${sort.sname}"></td>
+        </tr>
+        <tr>
+            <td>更改后类别名:<input type="text"  name="sname"> <input type="submit" value="修改" class="submit"></td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>

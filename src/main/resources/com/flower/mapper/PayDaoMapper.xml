@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flower.dao.PayDao">
+    <select id="findPayByOid" parameterType="Integer" resultType="Pay">
+        select * from flower.t_pay
+        where oid = #{oid}
+    </select>
+    <select id="findOrderByPid" parameterType="Integer" resultType="Integer">
+        select oid from flower.t_pay
+        where pid = #{pid}
+    </select>
+    <insert id="addPay" parameterType="Pay">
+        insert into flower.t_pay
+        values (#{pid},#{oid},#{cid},#{ostatus},#{price},#{money},#{amount},#{subject},#{image})
+    </insert>
+    <update id="updatePays" parameterType="map">
+        update flower.t_pay
+        set ostatus = #{ostatus}
+        where pid = #{pid}
+    </update>
+    <delete id="deleteByPid" parameterType="Integer">
+        delete from flower.t_pay
+        where pid = #{pid}
+    </delete>
+    <delete id="deleteByOid" parameterType="Integer">
+        delete from flower.t_pay
+        where oid = #{oid}
+    </delete>
+</mapper>

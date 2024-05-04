@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        input{
+            width: 600px;
+            height: 45px;
+        }
+        button{
+            height: 45px;
+            width: 55px;
+        }
+        table{
+            width: 1000xp;
+            margin: 0 auto;
+            text-decoration: none;
+        }
+        table tr td{
+            width: 200px;
+            height: 50px;
+            border-bottom: 1px black solid;
+        }
+        button{
+            width: 60px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: rgb(233, 164, 129);
+
+        }
+        button a{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>订单信息管理</h1>
+<form th:action="@{/Order/queryOrder}">
+    <table class="table" cellspacing="0">
+        <div class="search">
+            <input type="text" placeholder="请输入订单编号:" outline="none" name="onumber">
+            <button>搜索</button>
+        </div>
+        <tr class="title">
+            <td>订单编号</td>
+            <td>备注</td>
+            <td>鲜花名称</td>
+            <td>收货地址</td>
+            <td>下单时间</td>
+            <td>总价</td>
+            <td>操作</td>
+        </tr>
+        <tr th:each="listsList,state:${listsList}">
+            <td><a th:href="@{/Pay/Lists(oid=${listsList.oid})}" th:text="${listsList.onumber}"></a> </td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <td th:text="${listsList.oremark}"></td>
+            <td th:text="${listsList.orderName}"></td>
+            <td th:text="${listsList.oaddress}"></td>
+            <td th:text="${listsList.otime}"></td>
+            <td th:text="${listsList.oprice}"></td>
+            <td>
+                <button><a href="javascript:;" th:onclick="'deleteEmployee('+${listsList.oid}+')'">删除</a></button>
+            </td>
+        </tr>
+        <script>
+            function deleteEmployee(oid){
+                console.log(oid);
+                if(window.confirm('确定要删除这条记录吗?')){
+                    location.href='[[@{/Order/deleteOrder?oid=}]]'+oid;
+                }
+            }
+        </script>
+    </table>
+</form>
+</body>
+</html>

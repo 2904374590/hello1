@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的订单</title>
+    <link rel="stylesheet" th:href="@{/css/my-order.css}">
+
+</head>
+
+<body>
+
+        <div class="nav">
+            <ul>
+                <li><a th:href="@{/Flower/home}">首页</a></li>
+                <li><a th:href="@{/Cart/carts}">购物车</a></li>
+                <li><a th:href="@{/Order/lists}">我的订单</a></li>
+            </ul>
+        </div>
+
+    <!-- 头部区域end-->
+
+    <div class="gwc">我的订单</div>
+
+    <!-- main -->
+        <table class="tableOrder"  cellspacing="0">
+
+            <tr class="space"></tr>
+
+            <tr class="title">
+                <th>订单编号</th>
+                <th>备注</th>
+                <th>鲜花名称</th>
+                <th>收货人名称</th>
+                <th>收货人电话</th>
+                <th>收货地址</th>
+                <th>下单时间</th>
+                <th>总价</th>
+            </tr>
+
+            <tr class="space"></tr>
+
+            <tr th:each="list,state:${lists}">
+                <td><a th:href="@{/Pay/open(oid=${list.oid})}" th:text="${list.onumber}"></a> </td>
+                <td th:text="${list.oremark}"></td>
+                <td th:text="${list.orderName}"></td>
+                <td th:text="${list.oname}"></td>
+                <td th:text="${list.ophone}"></td>
+
+                <td th:text="${list.oaddress}"></td>
+                <td th:text="${list.otime}"></td>
+                <td th:text="${list.oprice}"></td>
+            </tr>
+        </table>
+
+</body>
+
+</html>

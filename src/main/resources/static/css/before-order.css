@@ -1,0 +1,174 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #fff;
+    /* height: 3000px; */
+}
+/* 设置版心的区块 要是处于版心的模块 就带W */
+.w{
+    width: 1200px;
+    margin: auto;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.clearfix:before,.clearfix:after{
+    content:"";
+    display:table;
+}
+.clearfix:after{
+    clear:both;
+}
+.clearfix{
+    *zoom:1;
+}
+.header{
+    height: 42px;
+    /* background-color: pink; */
+    /* 注意此地方会层叠w里面的margin */
+    margin: 9px auto; 
+}
+.logo img{
+    width: 198px;
+    height: 42px;
+    /* background-color: aquamarine; */
+    float: left;
+}
+
+.nav{
+    float: left;
+    margin-left: 20px;
+}
+.nav ul li{
+    float: left;
+    margin: 0 10px;
+}
+.nav ul li a{
+    height: 42px;
+    padding: 0 10px;
+    display: block;
+    line-height: 42px;
+    font-size: 18px;
+    color: #050505;
+}
+.nav ul li a:hover{
+    border-bottom: 2px solid #00a4ff;
+    color: #00a4ff;
+}
+/* 搜索模块 */
+.search{
+    float: left;
+    width: 412px;
+    height: 42px;
+    /* background-color: skyblue; */
+    margin-left: 40px;
+}
+.search input{
+    float: left;
+    width: 250px;
+    height: 40px;
+    border: 1px solid #00a4ff;
+    border-right: 0;
+    color: #bfbfbf;
+    font-size: 14px;
+    padding-left: 15px;
+}
+.search input:focus {
+    outline:none;
+} 
+.search button{
+    float: left;
+    width: 50px;
+    height: 42px;
+    background-color: #00a4ff;
+    border: 0; 
+}
+.user{
+    float: left;
+    line-height: 42px;
+    font-size: 14px;
+    color: #666;
+}
+.user .img{
+    float: left;
+}
+.user .img img{
+    background-color: #00a4ff;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.user a p{
+    float: left;
+    color: #666;
+}
+
+.header .dl a{
+    float:right;
+    line-height: 42px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #666;
+}
+/* .header .zx a{
+    float: right;
+    line-height: 42px;
+    margin-right: 10pxpx;
+    font-size: 14px;
+    color: #666;
+} */
+.header .dl a:hover{
+    color: #00a4ff;
+    text-decoration:underline;
+}
+/* .header .zx a:hover{
+    color: #00a4ff;
+    text-decoration:underline;
+} */
+
+.gwc{
+    text-align: center;
+    height: 42px;
+    padding: 0 10px;
+    display: block;
+    line-height: 42px;
+    font-size: 24px;
+}
+
+
+/* main部分 */
+.tableOrder{
+    width: 100%;
+    text-align: center;
+    /* border-collapse: collapse; */
+    /* border-spacing: 0; */
+    border: none;
+}
+.tableOrder tr{
+    /* height: 120px; */
+    background-color: #eaebf0;
+    border-radius: 50%;
+}
+.tableOrder .title{
+    background-color: #fff;
+}
+.tableOrder tr td{
+    height: 120px;
+}
+.tableOrder .space{
+    height: 40px;
+}
+.tableOrder tr td img{
+    /* width: 228px; */
+    height: 100%;
+}
+.tableOrder tr  .img{
+    width: 100px;
+}

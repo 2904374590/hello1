@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flower.dao.FlowerDao">
+        <select id="lists" resultType="Sort">
+                select * from flower.t_sort
+        </select>
+        <select id="qureyFlowers" resultType="Flower">
+                select * from flower.t_flower
+                where fname like CONCAT('%',#{fname},'%')
+        </select>
+        <select id="findSortBySid" parameterType="Integer" resultType="Sort">
+                select * from flower.t_sort
+                where sid = #{sid}
+        </select>
+        <select id="findFlowerBySid" parameterType="Integer" resultType="Flower">
+                select * from flower.t_flower
+                where sid = #{sid}
+        </select>
+
+        <select id="findBySname" parameterType="String" resultType="Sort">
+                select * from flower.t_sort
+                where sname = #{sname}
+        </select>
+
+        <select id="queryByUsername" parameterType="String" resultType="Sort">
+                select * from flower.t_sort
+                where sname like CONCAT('%',#{sname},'%')
+        </select>
+        <select id="findFlowerByFid" parameterType="Integer" resultType="Flower">
+                select * from flower.t_flower
+                where fid = #{fid}
+        </select>
+
+        <select id="findFlowerByFname" parameterType="map" resultType="Flower">
+            select  *  from
+            (select * from flower.t_flower where sid = #{sid}) a
+            where fname = #{fname}
+        </select>
+        <select id="queryFlowerByFname" parameterType="map" resultType="Flower">
+                select * from
+                (select * from flower.t_flower where sid = #{sid}) a
+                where fname like CONCAT('%',#{fname},'%')
+        </select>
+        <select id="queryFlower" resultType="Flower">
+                select * from flower.t_flower
+        </select>
+
+
+
+        <insert id="addSort" parameterType="String" >
+                insert into flower.t_sort (sname) value (#{sname})
+        </insert>
+        <insert id="addFlower" parameterType="Flower">
+                insert into flower.t_flower
+                values (#{fid},#{fname},#{fimage},#{sid},#{sname},#{fprice},#{fdescribe})
+        </insert>
+
+        <delete id="deleteBySid" parameterType="Integer">
+                delete from flower.t_sort
+                where sid = #{sid}
+        </delete>
+        <delete id="deleteByFid" parameterType="Integer">
+                delete from flower.t_flower
+                where fid = #{fid}
+        </delete>
+
+        <delete id="deleteFlowerBySid" parameterType="Integer">
+                delete from flower.t_flower
+                where sid = #{sid}
+        </delete>
+
+        <update id="updateSname" parameterType="Sort">
+                update flower.t_sort
+                set sname = #{sname}
+                where sid = #{sid}
+        </update>
+        <update id="updateFLowerSname" parameterType="map">
+                update flower.t_flower
+                set sname = #{sname}
+                where sid = #{sid}
+        </update>
+
+        <update id="updateFlower" parameterType="Flower">
+                update flower.t_flower
+                set fname=#{fname},fimage=#{fimage},sid=#{sid},sname=#{sname},fprice=#{fprice},fdescribe=#{fdescribe}
+                where fid = #{fid}
+        </update>
+</mapper>

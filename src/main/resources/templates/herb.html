@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>草本花卉</title>
+    <link rel="stylesheet" th:href="@{/css/herb.css}">
+
+</head>
+<body>
+    <div class="box w">
+        <div class="box-hd">
+            <h3 th:text="${s.sname}"></h3>
+            <a th:href="@{/Flower/home}">返回首页</a>
+        </div>
+        <div class="box-bd" style="width: 5px">
+            <ul class="clearfix" >
+                <!-- 草本图一 -->
+
+                <li th:each="flowerList,state:${flowerLists}">
+
+                    <a th:href="@{/Flower/con(fid=${flowerList.fid})}">
+                        <div class="img">
+                            <img th:src="@{/}+${flowerList.fimage}" width="50" height="180"  >
+                        </div>
+                        <br><br><br>
+
+                        <div class="info">
+                            <h4 th:text="${flowerList.fname}"/>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

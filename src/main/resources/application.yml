@@ -1,0 +1,23 @@
+server:
+  port: 9999
+
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/flower?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 290437
+    type: com.alibaba.druid.pool.DruidDataSource
+  web:
+    resources:
+      static-locations: classpath:/static/,file:${photo.file.dir} #可以直接通过项目名直接访问
+mybatis:
+  type-aliases-package: com.flower.entity
+  mapper-locations: classpath:com/flower/mapper/*.xml
+photo:
+  file:
+    dir: E:\Web课设\Flower\photos
+
+

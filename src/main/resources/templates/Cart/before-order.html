@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单确认</title>
+    <link rel="stylesheet" th:href="@{/css/before-order.css}">
+
+</head>
+
+<body>
+    <form th:action="@{/Order/pay}">
+            <div class="nav">
+                <ul>
+                    <li><a th:href="@{/Flower/home}">首页</a></li>
+                    <li><a th:href="@{/Cart/carts}">购物车</a></li>
+                    <li><a th:href="@{/Order/lists}">我的订单</a></li>
+                </ul>
+            </div>
+
+
+        <!-- 头部区域end-->
+
+        <div class="gwc">订单确认</div>
+
+        <!-- main -->
+            <table class="tableOrder"  cellspacing="0">
+                <tr class="space">
+
+                </tr>
+                <tr class="title">
+                    <th></th>
+                    <th>鲜花图片</th>
+                    <th>鲜花名称</th>
+                    <th>单价/元</th>
+                    <th>数量/个</th>
+                    <th>总价</th>
+                    <th></th>
+                </tr>
+                <tr class="space">
+
+                </tr>
+                <tr th:each="list:${list}">
+                    <td></td>
+                    <td class="img">
+                        <img th:src="@{/}+${list.fimage}" width="140px" height="100px">
+                    </td>
+                    <td class="flower_name" th:text="${list.subject}"></td>
+                    <td th:text="${list.fprice}"></td>
+                    <td th:text="${list.camount}"></td>
+                    <td th:text="${list.money}"></td>
+                    <td></td>
+                </tr>
+                <tr class="space"></tr>
+                <tr>
+                    <td th:text="'总价:'+${money}"></td>
+
+
+                    <td>备注：<input type="text" th:value="无" name="oremark"></td>
+                    <td>地址：<input type="text" th:value="${session.loginUser.uaddress}" name="oaddress"></td>
+                    <td>电话：<input type="text" th:value="${session.loginUser.uphone}" name="ophone"></td>
+                    <td>姓名：<input type="text" th:value="${session.loginUser.urealname}" name="oname"></td>
+                    <td><a th:href="@{/Cart/carts}">取消订单</a></td>
+                    <td><input type="submit" th:value="立即支付"></td>
+                </tr>
+            </table>
+            <input type="hidden"   th:value="${session.loginUser.uid}" name="uid">
+            <input type="hidden" name="otime"  id="today">
+            <input type="hidden" name="onumber" th:value="0">
+            <input type="hidden" name="oprice" th:value="${money}"  >
+            <input type="hidden"  class="flower_input" name="orderName" >
+
+    </form>
+
+    <script type="text/javascript">
+        function today(){//构建方法
+            var today=new Date();//new 出当前时间
+            var h=today.getFullYear();//获取年
+            var m=today.getMonth()+1;//获取月
+            var d=today.getDate();//获取日
+            var H = today.getHours();//获取时
+            var M = today.getMinutes();//获取分
+            var S = today.getSeconds();//获取秒
+            return h+"-"+m+"-"+d+" "+H+":"+M+":"+S; //返回 年-月-日 时:分:秒
+        }
+        document.getElementById("today").value = today();//将获取到的 年-月-日 时:分:秒 赋给input文本输入框
+    </script>
+    <!--<script type="text/javascript">
+        function date(){//构建方法
+            var date=new Date();//new 出当前时间
+            var h=date.getFullYear();//获取年
+            var m=date.getMonth()+1;//获取月
+            var d=date.getDate();//获取日
+            var H = date.getHours();//获取时
+            var M = date.getMinutes();//获取分
+            var S = date.getSeconds();//获取秒
+            return h+""+m+""+d+""+H+""+M+""+S; //返回 年-月-日 时:分:秒
+        }
+        document.getElementById("date").value = date();//将获取到的 年-月-日 时:分:秒 赋给input文本输入框
+    </script>-->
+    <script>
+        var flower_name = document.querySelectorAll('.flower_name');
+        var flower_input = document.querySelector('.flower_input');
+        console.log(flower_name);
+        var array = [];
+        for(var i = 0; i <flower_name.length; i++){
+            console.log(flower_name[i].innerHTML);
+            array[i] = flower_name[i].innerHTML;
+        }
+        console.log(array);
+        flower_input.value = array;
+    </script>
+</body>
+
+</html>

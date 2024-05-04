@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            text-align: center;
+            font-size: 20px;
+        }
+        input{
+            width: 600px;
+            height: 45px;
+        }
+        button{
+            height: 45px;
+            width: 55px;
+        }
+        table{
+            width: 1000xp;
+            margin: 0 auto;
+            text-decoration: none;
+        }
+        table tr td{
+            width: 200px;
+            height: 50px;
+            border-bottom: 1px black solid;
+        }
+        button{
+            width: 60px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: rgb(233, 164, 129);
+
+        }
+        button a{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>购物车管理界面</h1>
+<pr>已按时间顺序最新进行排序</pr>
+<hr>
+    <table>
+        <tr class="table_header">
+            <td>
+                鲜花图片
+            </td>
+            <td>
+                鲜花名称
+            </td>
+            <td>
+                单价
+            </td>
+            <td>
+                数量
+            </td>
+            <td>
+                总价
+            </td>
+            <td>
+                操作
+            </td>
+        </tr>
+        <tr th:each="cartLists,state:${cartLists}" >
+            <td>
+                <img th:src="@{/}+${cartLists.fimage}" width="60">
+            </td>
+            <td>
+                <span th:text="${cartLists.subject}"></span>
+            </td>
+            <td>
+                <span th:text="${cartLists.fprice}"></span>
+            </td>
+            <td>
+                <span th:text="${cartLists.camount}"></span>
+            </td>
+            <td>
+                <span th:text="${cartLists.money}"></span>
+            </td>
+            <td>
+                <button><a href="javascript:;" th:onclick="'deleteEmployee('+${cartLists.cid}+')'">删除</a></button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function deleteEmployee(cid){
+            console.log(cid);
+            if(window.confirm('确定要删除这条记录吗?')){
+                location.href='[[@{/Cart/deleteCartByCid?cid=}]]'+cid;
+            }
+        }
+    </script>
+</body>
+</html>

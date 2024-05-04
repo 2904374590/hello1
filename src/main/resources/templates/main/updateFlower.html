@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td tr{
+            border: 1px solid black;
+            width: 100px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>修改鲜花信息</h1>
+<form th:action="@{/Flower/updateFlower}" method="post" enctype="multipart/form-data">
+    <table border="1" cellspacing="0">
+        <tr>
+            <td><input type="hidden" th:value="${flower.fid}" readonly="readonly" name="fid" ></td>
+        </tr>
+        <tr>
+            <td>
+                原头像：
+                <img th:src="@{/}+${flower.fimage}" width="60">
+                <input type="hidden" th:value="${flower.fimage}" name="fimage">
+            </td>
+        </tr>
+        <tr>
+            <td valign="left" align="left">
+                添加新头像:
+            </td>
+            <td valign="left" align="left">
+                <input type="file" width="" name="img" />
+            </td>
+        </tr>
+        <tr>
+            <td>鲜花名称:<input type="text" th:value="${flower.fname}"  name="fname"></td>
+        </tr>
+        <tr>
+            <td><input type="hidden" th:value="${flower.sid}" name="sid"></td>
+        </tr>
+        <tr>
+            <td><input type="hidden" th:value="${flower.sname}" name="sname"></td>
+        </tr>
+        <tr>
+            <td>鲜花价格:<input type="text" th:value="${flower.fprice}" name="fprice"></td>
+        </tr>
+        <tr>
+            <td>鲜花描述:<input type="text" th:value="${flower.fdescribe}"  style="height:60px;width:449px;font-size:12px;" name="fdescribe"></td>
+        </tr>
+
+        <tr>
+            <td><input type="submit" value="修改" class="submit"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
